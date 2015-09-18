@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" ng-app='firebaseApp'>
+<head>
+	<meta charset="UTF-8">
+	<title>firebase real-time application </title>
+  <!-- bootstrap 3 -->
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+	<!-- angularjs -->
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
+	<!-- Firebase -->
+	<script src="https://cdn.firebase.com/js/client/2.2.4/firebase.js"></script>
+	<!-- AngularFire -->
+	<script src="https://cdn.firebase.com/libs/angularfire/1.1.2/angularfire.min.js"></script>
+	<!-- app.js -->
+	<script src="js/app.js"></script>
+
+</head>
+<body>
+	<div ng-controller="firebaseCtrl" style="padding:20px;">
+
+
+    <div ng-show="isEdit == true" style="padding:10px;">
+			FirstName : <input type="text" ng-model="User.firstname"
+			placeholder="Enter First Name" class="form-control"> <br>
+			LastName : <input type="text"  ng-model="User.lastname"
+			placeholder="Enter Last Name" class="form-control"> <br />
+			Email : <input type="text" ng-model="User.email"
+			placeholder="Enter Email" class="form-control"> <br />
+			<button ng-click="onUpdate(User)" class="btn btn-success"> Update User</button>
+      <button ng-click="onCancelForm()" class="btn btn-warning"> Cancel</button>
+		</div>
+
+    <div ng-show="isAdd == true" style="padding:10px;">
+      FirstName : <input type="text" ng-model="User.firstname"
+      placeholder="Enter First Name" class="form-control"> <br>
+      LastName : <input type="text"  ng-model="User.lastname"
+      placeholder="Enter Last Name" class="form-control"> <br />
+      Email : <input type="text" ng-model="User.email"
+      placeholder="Enter Email" class="form-control"> <br />
+      <button ng-click="onAdd(User)" class="btn btn-primary"> Add User</button>
+      <button ng-click="onCancelForm()" class="btn btn-warning"> Cancel</button>
+    </div>
+
+    <a href="" ng-click="AddUser()" class="btn btn-success">Add User</a>
+
+    <table class="table table-striped">
+      <tr>
+        <th>token</th>
+        <th>data</th>
+        <th>action</th>
+      </tr>
+      <tr ng-repeat="d in dataArray">
+        <td>{{d.$id}}</td>
+        <td>{{d.firstname}} - {{d.lastname}} : {{d.email}}</td>
+        <td>
+          <a href="" ng-click="onEdit(d)" class="btn btn-info">edit</a>
+          <a href="" ng-click="onDele(d)" class="btn btn-danger">del</a>
+        </td>
+      </tr>
+    </table>
+	</div>
+</body>
+</html>
