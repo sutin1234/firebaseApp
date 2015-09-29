@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="firebaseApp">
+<head>
+	<meta charset="UTF-8">
+	<title>Firebase Tutorial Realtime Application</title>
+	<!-- angularjs -->
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
+	<!-- Firebase -->
+	<script src="https://cdn.firebase.com/js/client/2.2.4/firebase.js"></script>
+	<!-- AngularFire -->
+	<script src="https://cdn.firebase.com/libs/angularfire/1.1.2/angularfire.min.js"></script>
+	<!-- app.js -->
+	<script src="js/app.js"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+</head>
+<body>
+	<div ng-controller="theCtrl">
+		<table class="table table-striped">
+			<tr>
+				<td>Email</td>
+				<td>Firstname</td>
+				<td>Lastname</td>
+				<td>Action</td>
+			</tr>
+			<tr ng-repeat="data in dataRef">
+				<td>{{data.email}}</td>
+				<td>{{data.firstname}}</td>
+				<td>{{data.lastname}}</td>
+				<td>
+					<a href="#" ng-click="onEditFirebase(data)">edit</a>
+					<a href="#" ng-click="onDel(data)">del</a>
+				</td>
+			</tr>
+		</table>
+
+		<!-- edit firebase -->
+		<form name="f1" ng-show="Editable == true">
+			<table>
+				<tr>
+					<td>Firstname</td>
+					<td><input type="text" ng-model="Users.firstname" class="form-control"></td>
+				</tr>
+				<tr>
+					<td>Lastname</td>
+					<td><input type="text" ng-model="Users.lastname" class="form-control"></td>
+				</tr>
+				<tr>
+					<td>Email</td>
+					<td><input type="text" ng-model="Users.email" class="form-control"></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td><button ng-click="onsaved(Users)">saved</button></td>
+				</tr>
+			</table>
+		</form>
+	</div>
+	
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

@@ -50,3 +50,35 @@ app.controller('firebaseCtrl',function($scope,$firebaseArray,ServiceFirebase){
 	}
 
 });
+
+app.controller('theCtrl',function($scope,$firebaseArray){
+	var ref = new Firebase("https://kohanthailand.firebaseio.com/chatroom/tb_user");
+	$scope.dataRef = $firebaseArray(ref);
+	
+	$scope.Editable = false;
+	$scope.onEditFirebase = function(data){
+		$scope.Users = data;
+		$scope.Editable = true;
+	}
+
+	$scope.onsaved = function(data){
+		$scope.dataRef.$save(data);
+		$scope.Users = []; // clear value array all
+		$scope.Editable = false;
+	}
+
+	$scope.onDel = function(data){
+		if(confirm("Do you want to delete! "+data.firstname)){
+			$scope.dataRef.$remove(data);
+		}
+	}
+});
+
+
+
+
+
+
+
+
+
